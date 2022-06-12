@@ -11,8 +11,6 @@ class RepairRequest(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
     desired_date = models.DateTimeField(default=timezone.now)
-    status = models.PositiveIntegerField(default=0)
-    status_photo = models.ImageField(upload_to="uploads/%Y/%m/%d/")
 
     def __str__(self):
         return f"{self.name} ({self.org_name})"
