@@ -1,21 +1,33 @@
 from django.contrib.auth.models import BaseUserManager 
 
 class EmployeeManager(BaseUserManager):
-    def create_user(self, name, email, phone_number, password):
-        user = self.model(email=email, name=name, phone_number=phone_number, password=password)
+    def create_user(self, email, phone_number, password=None):
+        """
+        Creates and saves a User with the given email, date of
+        birth and password.
+        """
+        if not email:
+            raise ValueError('Users must have an email address')
+
+        user = self.model(
+            email=self.normalize_email(email),
+            phone_number = phone_number,
+        )
+
         user.set_password(password)
-        user.is_staff = False
-        user.is_superuser = False
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, phone_number, password):
-        user = self.model(email=email, phone_number=phone_number, password=password)
-        user.is_active = True
-        user.is_staff = True
-        user.is_superuser = True
+    def create_superuser(self, email, phone_number, password=None):
+        """
+        Creates and saves a superuser with the given email, date of
+        birth and password.
+        """
+        user = self.create_user(
+            email,
+            password=password,
+            phone_number = phone_number
+        )
+        user.is_admin = True
         user.save(using=self._db)
         return user
-
-    def get_by_natural_key(self, phone_number):
-        return self.get(phone_number=phone_number)
