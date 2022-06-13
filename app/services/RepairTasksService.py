@@ -2,7 +2,7 @@ from django.utils.translation import gettext as _
 from app.models.repair_requests.RepairTask import RepairTask
 from .AccountService import *
 
-class RepairTasksManager:
+class RepairTasksService:
     @staticmethod
     def get_account_tasks(request):
         return RepairTask.objects.filter(executor=AccountService.get_account(request)).all()

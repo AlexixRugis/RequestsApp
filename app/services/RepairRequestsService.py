@@ -16,7 +16,7 @@ class RepairRequestsService:
         if request.task:
             return (False, _("This task is already accepted"))
 
-        task = RepairTask(executor=executor, request=request)
+        task = RepairTask(executor=executor, request=repair_request)
         task.save()
 
         return (True, _("Request is successfully accepted"))
