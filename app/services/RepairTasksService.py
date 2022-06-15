@@ -5,7 +5,11 @@ from .AccountService import *
 class RepairTasksService:
     @staticmethod
     def get_account_tasks(request):
-        return RepairTask.objects.filter(executor=AccountService.get_account(request)).all()
+        return RepairTask.objects.filter(executor=AccountService.get_account(request), is_completed=False).all()
+
+    @staticmethod
+    def get_completed_tasks(request):
+        return RepairTask.objects.filter(executor=AccountService.get_account(request), is_completed=True).all()
 
     @staticmethod
     def complete_task(request, task):

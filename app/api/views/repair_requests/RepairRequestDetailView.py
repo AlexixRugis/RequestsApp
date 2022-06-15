@@ -9,4 +9,4 @@ class RepairRequestDetailView(generics.RetrieveAPIView):
     serializer_class = RepairRequestSerializer
 
     def get_queryset(self):
-        return RepairRequestsService.get_available_requests(self.request)
+        return RepairRequestsService.get_available_requests()

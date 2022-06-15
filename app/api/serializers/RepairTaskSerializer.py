@@ -1,4 +1,3 @@
-from flask import request
 from rest_framework import serializers
 from app.api.serializers.RepairPartRequestSerializer import RepairPartRequestSerializer
 from app.models.repair_requests.RepairTask import *

@@ -3,7 +3,7 @@ from django.core.validators import RegexValidator
 from django.utils import timezone
 
 class RepairRequest(models.Model):
-    org_name = models.TextField
+    org_name = models.TextField()
     org_address = models.TextField()
     phoneNumberRegex = RegexValidator(regex = r"^\+?1?\d{8,15}$")
     org_phone = models.CharField(validators = [phoneNumberRegex], max_length = 16, unique = True)

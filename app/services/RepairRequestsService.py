@@ -13,7 +13,7 @@ class RepairRequestsService:
     def accept_request(request, repair_request):
         executor = AccountService.get_account(request)
 
-        if request.task:
+        if hasattr(repair_request, 'task'):
             return (False, _("This task is already accepted"))
 
         task = RepairTask(executor=executor, request=repair_request)
