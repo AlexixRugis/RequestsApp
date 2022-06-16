@@ -26,3 +26,7 @@ class AccountService:
             return request.user
         else:
             return None
+
+    @staticmethod
+    def is_authenticated(request):
+        return request.user.is_authenticated

@@ -26,7 +26,7 @@ SECRET_KEY = '$srhlkzz6sv5%!9iw6-%0i7vrgp^!nsgz$v&ro-2w59o71&1an'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost"]
+ALLOWED_HOSTS = ["localhost", "10.0.2.2"]
 
 
 # Application definition
@@ -63,7 +63,7 @@ SESSION_COOKIE_SAMESITE = "Lax"
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8000",
+    "http://localhost:8000"
 ]
 
 CORS_ALLOW_HEADERS = [

@@ -12,6 +12,7 @@ from app.api.views.repair_requests.CompletedRepairTaskDetailView import Complete
 from app.api.views.repair_requests.CompletedRepairTasksView import CompletedRepairTasksView
 from app.api.views.repair_requests.RepairRequestDetailView import RepairRequestDetailView
 from app.api.views.repair_requests.RepairTaskDetailView import RepairTaskDetailView
+from app.api.views.account.IsAuthenticatedView import IsAuthenticatedView
 
 
 
@@ -22,6 +23,7 @@ urlpatterns = [
     path ("logout/", LogoutView.as_view()),
     # личный кабинет    
     path("account/", MyAccountView.as_view()),
+    path("is_authenticated/", IsAuthenticatedView.as_view()),
 
     # просмотр всех доступных заявок
     path("requests/", AvailableRepairRequestsView.as_view()),
