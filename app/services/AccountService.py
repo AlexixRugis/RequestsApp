@@ -1,3 +1,4 @@
+from abc import get_cache_token
 from django.contrib.auth import authenticate, login as d_login, logout as d_logout
 from django.utils.translation import gettext as _
 
@@ -30,3 +31,17 @@ class AccountService:
     @staticmethod
     def is_authenticated(request):
         return request.user.is_authenticated
+
+    @staticmethod
+    def change_password(request, new_password):
+        if len(new_password) < 5:
+            return (False, _("Password must contain at least 5 characters"))
+
+        user = AccountService.get_account(request)
+        assert(user is not None)
+        try:
+            user.set_password(new_password)
+            user.save()
+            return (True, _("Password is successully changed"))
+        except:
+            return (False, _("An error occured when changing the password"))

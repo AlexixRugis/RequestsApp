@@ -1,4 +1,5 @@
 from django.urls import path
+from app.api.views.account.ChangePasswordView import ChangePasswordView
 from app.api.views.account.LoginView import LoginView
 from app.api.views.account.LogoutView import LogoutView
 from app.api.views.account.MyAccountView import MyAccountView
@@ -23,6 +24,9 @@ urlpatterns = [
     path ("logout/", LogoutView.as_view()),
     # личный кабинет    
     path("account/", MyAccountView.as_view()),
+    # смена пароля
+    path("change_password/", ChangePasswordView.as_view()),
+    
     path("is_authenticated/", IsAuthenticatedView.as_view()),
 
     # просмотр всех доступных заявок
