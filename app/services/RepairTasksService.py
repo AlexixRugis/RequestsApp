@@ -14,6 +14,11 @@ class RepairTasksService:
     @staticmethod
     def complete_task(request, task):
         executor = AccountService.get_account(request)
+
+        file = request.data.get('image', None)
+
+        if not file:
+            return (False, _("You should attach a photo to complete a task"))
         
         if not task.executor == executor:
             return (False, _("You dont have permission to execute this action"))
@@ -21,6 +26,7 @@ class RepairTasksService:
         if task.is_completed:
             return (False, _("This task is already completed"))
 
+        task.status_photo.save(file.name, file, save=True)
         task.is_completed = True
         task.save()
 

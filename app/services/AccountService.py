@@ -42,6 +42,7 @@ class AccountService:
         try:
             user.set_password(new_password)
             user.save()
+            d_login(request, user)
             return (True, _("Password is successully changed"))
         except:
             return (False, _("An error occured when changing the password"))
